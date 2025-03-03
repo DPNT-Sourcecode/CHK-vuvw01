@@ -37,8 +37,7 @@ def apply_discounts(discounts: dict, skus_count: dict) -> int:# this function sh
             print("rule[1]:", rule[1])
             # check if
             total += rule[1]
-            item_count = skus_count[item]
-            skus_count[item] = item_count - rule[0]
+            print("total", total)
     return total
 
 
@@ -71,5 +70,6 @@ def checkout(skus: str) -> int:
     return total
 
 print(checkout("EEB"))
+
 
 
