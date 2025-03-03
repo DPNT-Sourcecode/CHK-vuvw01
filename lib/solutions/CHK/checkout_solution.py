@@ -51,9 +51,12 @@ def checkout(skus: str) -> int:
     apply_offers(skus_count)
     total = apply_discounts(skus_count)
     print("\n\n TOTAL 1:", total)
+    print("\n\n skus_count:", skus_count)
     for i in skus:
-        total += values[i] * skus_count[i]
+        print(values[i], skus_count[i])
+        total += values[i] * skus_count[i] # logic here is wrong
     print("\n\n TOTAL 2:", total)
     return total
 
 print(checkout("AAAA"))
+
