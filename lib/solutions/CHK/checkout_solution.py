@@ -21,11 +21,13 @@ def checkout(skus: str) -> int:
 
         sum_without_discounts = C_counter * values["C"] + D_counter * values["D"]
         if A_counter > 3:
-            A_counter %= 3 # should be 1
-            
+            left_A = A_counter % 3# should be 1
+
+
 
     else:
         return -1
 
-print(checkout("AAAA"))
+print(checkout("AAAAAAAAAA"))
+
 
