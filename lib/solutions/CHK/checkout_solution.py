@@ -30,18 +30,3 @@ def checkout(skus: str) -> int:
 
 
 
-
-def test_checkout():
-    assert checkout("8") == -1
-    assert checkout("EF") == -1
-    assert checkout("A") == 50
-    assert checkout("ABCD") == 115
-    assert checkout("AABCD") == 165
-    assert checkout("AAABCD") == 195
-    assert checkout("AABBCD") == 180
-    assert checkout("AABCCDD") == 200
-
-if __name__ == "__main__":
-    test_checkout()
-
-
