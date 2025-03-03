@@ -27,15 +27,16 @@ def apply_offers(offers, skus_count):
                 skus_count[free_item] =  max(0, skus_count.get(free_item, 0) - num_free_items)
     return skus_count
 
-def apply_discounts(discounts, skus_count):
+def apply_discounts(discounts: dict, skus_count: dict) -> int:# this function should be called at the beginning OR use OOP.
+    total = 0
     for item, rules in discounts.items():
         for rule in rules:
-           # add discounted price to total and remove that amount of items
-            # check to how many items the discount applies to
+            print("rule", rule)
+            print("skus", skus_count[item])
+            total += rule[1]
             item_count = skus_count[item]
-           # add used items from count
-
-            # substract from total
+            skus_count[item] = item_count - rule[0]
+            return total
 
 
 
@@ -49,7 +50,7 @@ def checkout(skus: str) -> int:
     print("apply offers", apply_offers(offers, skus_count))
 
     print(skus_count)
-
+    print("\n\n APPLY DISCOUNTS\n\n", apply_discounts(discounts, skus_count))
     amount_of_discounts = E_counter // 2
     B_counter = max(0, B_counter - amount_of_discounts)
     total += (B_counter // 2) * 45
