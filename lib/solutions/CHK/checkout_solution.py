@@ -28,13 +28,14 @@ def checkout(skus: str) -> int:
         total += (A_counter // 3) * 130
         A_counter %= 3
         total+= A_counter * values["A"]
+        free_B = E_counter // 2
+        if free_B <= B_counter:
+            B_counter -= free_B
+        else:
+            B_counter = 0
         total+= (B_counter // 2) * 45 + B_counter % 2 * values["B"]
         total += C_counter * values["C"] + D_counter * values["D"]
         total += E_counter * values["E"]
-        if (E_counter // 2)>=1 and B_counter >= 1:
-            #
-            if (B_counter - (E_counter // 2) >= 0):
-                total -= values["B"] * E_counter // 2
 
         return total
     else:
@@ -55,4 +56,5 @@ def test_checkout():
 
 if __name__ == '__main__':
     test_checkout()
+
 
