@@ -23,7 +23,3 @@ def checkout(skus: str) -> int:
         return -1
 
 print(checkout("AAAA")) # this would need to be
-
-
-
-
