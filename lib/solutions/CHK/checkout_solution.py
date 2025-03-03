@@ -1,4 +1,4 @@
-import unittest
+from collections import Counter
 #
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -19,6 +19,8 @@ def checkout(skus: str) -> int:
     A_counter =  B_counter = C_counter = D_counter = E_counter = F_counter = total = 0
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F"}):
         return -1
+    skus_count = Counter(skus)
+    print(skus_count)
     for i in skus:
         if i == 'A':
             A_counter += 1
@@ -49,4 +51,5 @@ def checkout(skus: str) -> int:
 
     return total
 
+print(checkout("AAABBCCDD"))
 
