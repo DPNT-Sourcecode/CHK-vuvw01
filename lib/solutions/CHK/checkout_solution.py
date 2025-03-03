@@ -25,8 +25,8 @@ def checkout(skus: str) -> int:
         if (A_counter // 5) >= 1:
             print("TRUE", A_counter // 5)
             total += (A_counter // 5) * 200 + (A_counter % 5 * values["A"])
-        else:
-            total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
+            # remove 5 from counter
+        total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
 
 
         total+= (B_counter // 2) * 45 + B_counter % 2 * values["B"]
@@ -58,4 +58,5 @@ def test_checkout():
 
 if __name__ == '__main__':
     test_checkout()
+
 
