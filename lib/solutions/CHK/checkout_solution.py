@@ -10,37 +10,39 @@ def checkout(skus: str) -> int:
     D_counter = 0
     E_counter = 0
     total = 0
-    if set(skus).issubset({"A", "B", "C", "D", "E"}):
-        for i in skus:
-            if i == 'A':
-                A_counter += 1
-            if i == 'B':
-                B_counter += 1
-            if i == 'C':
-                C_counter += 1
-            if i == 'D':
-                D_counter += 1
-            if i == 'E':
-                E_counter += 1
-
-        amount_of_discounts = E_counter // 2
-        for i in range(amount_of_discounts):
-            if B_counter > 0:
-                B_counter -= 1
-        print(B_counter)
-        # As
-        total += (A_counter // 5) * 200
-        A_counter %= 5
-        total += (A_counter // 3) * 130
-        A_counter %= 3
-        total+= A_counter * values["A"]
-        # Cs Ds Es
-        total += C_counter * values["C"] + D_counter * values["D"] + E_counter * values["E"]
-
-
-        return total
-    else:
+    if not set(skus).issubset({"A", "B", "C", "D", "E"}):
         return -1
+    for i in skus:
+        if i == 'A':
+            A_counter += 1
+        if i == 'B':
+            B_counter += 1
+        if i == 'C':
+            C_counter += 1
+        if i == 'D':
+            D_counter += 1
+        if i == 'E':
+            E_counter += 1
+    # Bs
+    amount_of_discounts = E_counter // 2
+    for i in range(amount_of_discounts):
+        if B_counter > 0:
+            B_counter -= 1
+        else:
+            break
+    total += (B_counter // 2) * 45
+    B_counter %=2
+    total += B_counter * values["B"]
+    # As
+    total += (A_counter // 5) * 200
+    A_counter %= 5
+    total += (A_counter // 3) * 130
+    A_counter %= 3
+    total+= A_counter * values["A"]
+    # Cs Ds Es
+    total += C_counter * values["C"] + D_counter * values["D"] + E_counter * values["E"]
+
+    return total
 
 
 def test_checkout():
