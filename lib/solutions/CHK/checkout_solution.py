@@ -27,14 +27,15 @@ def checkout(skus: str) -> int:
         return -1
 
 
-print(type(checkout("ABCD")))
+print(checkout("AAABCD"))
 
 def test_checkout():
     assert checkout("ABCD") == 115
-    assert checkout("AABCD") == 115
+    assert checkout("AABCD") == 165
     assert checkout("AAABCD") == 195
     assert checkout("AABBCD") == 130
     assert checkout("AABCCDD") == 215
 
 if __name__ == "__main__":
     test_checkout()
+
