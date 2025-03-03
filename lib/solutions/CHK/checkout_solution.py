@@ -50,25 +50,11 @@ def checkout(skus: str) -> int:
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F"}):
         return -1
     skus_count = Counter(skus)
-    print("apply offers", apply_offers(offers, skus_count))
-
-    print("skus_count", skus_count)
-    print("\n\n APPLY DISCOUNTS\n\n", apply_discounts(discounts, skus_count))
-    amount_of_discounts = E_counter // 2
-    B_counter = max(0, B_counter - amount_of_discounts)
-    total += (B_counter // 2) * 45
-    B_counter %=2
-    total += B_counter * values["B"]
-    total += (A_counter // 5) * 200
-    A_counter %= 5
-    total += (A_counter // 3) * 130
-    A_counter %= 3
-    total+= A_counter * values["A"]
-    total += C_counter * values["C"] + D_counter * values["D"] + E_counter * values["E"]
-    total += (F_counter // 3) * (2 * values["F"])
-    F_counter %= 3
-    total += F_counter * values["F"]
+    apply_offers(offers, skus_count)
+    total = apply_discounts(discounts, skus_count)
+    for i in skus:
+        total += values[i] * skus_count[i]
 
     return total
 
-print(checkout("AAAAAA"))
+print(checkout("AAAA"))
