@@ -42,22 +42,3 @@ def checkout(skus: str) -> int:
         return total
     else:
         return -1
-
-
-def test_checkout():
-    print(checkout("AAAAABBBBCCCCDDDDEE"))
-    assert checkout('AAAAABBBBCCCCDDDDEE') == 480
-    print(checkout("ABCD"))
-
-    assert checkout('ABCD') ==  115
-    print(checkout("EEB"))
-
-    assert checkout('EEB') == 80
-    assert checkout('ABCDE') == 155
-if __name__ == '__main__':
-    test_checkout()
-
-
-
-
-
