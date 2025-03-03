@@ -32,11 +32,12 @@ def apply_discounts(discounts: dict, skus_count: dict) -> int:# this function sh
     for item, rules in discounts.items():
         for rule in rules:
             print("rule", rule)
+            print("item:", item)
             print("skus", skus_count[item])
             total += rule[1]
             item_count = skus_count[item]
             skus_count[item] = item_count - rule[0]
-            return total
+    return total
 
 
 
@@ -46,10 +47,9 @@ def checkout(skus: str) -> int:
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F"}):
         return -1
     skus_count = Counter(skus)
-    print("\n\n skus count:", skus_count)
     print("apply offers", apply_offers(offers, skus_count))
 
-    print(skus_count)
+    print("skus_count", skus_count)
     print("\n\n APPLY DISCOUNTS\n\n", apply_discounts(discounts, skus_count))
     amount_of_discounts = E_counter // 2
     B_counter = max(0, B_counter - amount_of_discounts)
@@ -69,3 +69,4 @@ def checkout(skus: str) -> int:
     return total
 
 print(checkout("EEB"))
+
