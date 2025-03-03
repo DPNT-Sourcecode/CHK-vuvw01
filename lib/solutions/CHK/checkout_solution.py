@@ -5,19 +5,20 @@ from collections import Counter
 
 discounts = {"A": [(5, 200), (3, 130)],
                  "B": [(2, 45)],
-                 "E": [(2, "B")],
-                 "F": [(2, "F")],
                  "H": [(5, 45), (10, 80)],
                  "K": [(2, 150)],
-                 "N": [(3, "M")],
                  "P": [(5, 200)],
                  "Q": [(3, 80)],
-                 "R": [(3, "Q")],
-                 "U": [(3, "U")],
                  "V": [(2, 90), (3, 130)]}
+offers = {  "E": [(2, "B")],
+            "F": [(2, "F")],
+            "N": [(3, "M")],
+            "R": [(3, "Q")],
+            "U": [(3, "U")],
+            }
 
-def apply_discounts(discounts, skus_count):
-    for item, rules in discounts.items():
+def apply_offers(offers, skus_count):
+    for item, rules in offers.items():
         for rule in rules:
             if isinstance(rule[1], str):
                 amount_of_free_items = rule[0]
@@ -26,7 +27,7 @@ def apply_discounts(discounts, skus_count):
                 skus_count[free_item] =  max(0, skus_count.get(free_item, 0) - num_free_items)
     return skus_count
 
-def apply_offers(offers, skus_count):
+def apply_discounts(discounts, skus_count):
     for item, rules in discounts.items():
         for rule in rules:
            pass
@@ -40,6 +41,9 @@ def checkout(skus: str) -> int:
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F"}):
         return -1
     skus_count = Counter(skus)
+    print("\n\n skus count:", skus_count)
+    print("apply offers", apply_offers(offers, skus_count))
+
     print(skus_count)
 
     amount_of_discounts = E_counter // 2
@@ -59,4 +63,4 @@ def checkout(skus: str) -> int:
 
     return total
 
-print(checkout("AAABBCCDD"))
+print(checkout("EEB"))
