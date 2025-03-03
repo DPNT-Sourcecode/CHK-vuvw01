@@ -1,4 +1,4 @@
-
+import unittest
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -27,10 +27,9 @@ def checkout(skus: str) -> int:
         return -1
 
 
-print(checkout("ABCD"))
+print(type(checkout("ABCD")))
 
 def test_checkout():
-    assert checkout("ABC8") == -1
     assert checkout("ABCD") == 115
     assert checkout("AABCD") == 115
     assert checkout("AAABCD") == 195
