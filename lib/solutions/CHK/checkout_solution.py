@@ -28,6 +28,14 @@ def checkout(skus: str) -> int:
         return total
     else:
         return -1
+def test_checkout():
+    assert checkout("AAAAAAAA") == 360
+    assert checkout("BBBBBBAAAA") == 315
+    assert checkout("AAABBBCD") == 240
+    assert checkout("ABCD") == 115
+    assert checkout("8") == -1
 
-print(checkout("AAAAAAAAAA"), )
+
+if __name__ == '__main__':
+    test_checkout()
 
