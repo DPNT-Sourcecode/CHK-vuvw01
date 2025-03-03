@@ -30,8 +30,12 @@ def apply_offers(offers, skus_count):
 def apply_discounts(discounts, skus_count):
     for item, rules in discounts.items():
         for rule in rules:
-           pass
+           # add discounted price to total and remove that amount of items
+            # check to how many items the discount applies to
+            item_count = skus_count[item]
+           # add used items from count
 
+            # substract from total
 
 
 
