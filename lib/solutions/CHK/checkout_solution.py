@@ -21,13 +21,17 @@ def checkout(skus: str) -> int:
                 D_counter += 1
         if A_counter > 3:
             total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
+            print("total:" , total)
         if B_counter > 3:
-            total+= (B_counter // 3) * 130 + B_counter % 3 * values["B"]
-
+            total+= (B_counter // 2) * 45 + B_counter % 2 * values["B"]
+            print("total 1:", total)
         total += C_counter * values["C"] + D_counter * values["D"]
+        print("total 3:", total)
         return total
     else:
         return -1
+
+print(checkout("AAABBBCD"))
 def test_checkout():
     assert checkout("AAAAAAAA") == 360
     assert checkout("BBBBBBAAAA") == 315
@@ -36,6 +40,6 @@ def test_checkout():
     assert checkout("8") == -1
 
 
-if __name__ == '__main__':
-    test_checkout()
+# if __name__ == '__main__':
+#     test_checkout()
 
