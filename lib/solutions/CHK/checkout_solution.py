@@ -36,10 +36,11 @@ def apply_discounts(discounts: dict, skus_count: dict) -> int:# this function sh
             print("skus", skus_count[item])
             print("rule[1]:", rule[1])
             # check if there are enough item_count
-            total += (skus_count[item] // rule[0]) * rule[1]
+            total += (skus_count[item] // rule[0]) * rule[1] # 2//5 * 100
             print("total", total)
             skus_count_to_remove =  rule[0]
             skus_count[item] =  max(0, skus_count.get(item, 0) - skus_count_to_remove)
+    print("\n\n final total", total)
     print("skus_count_after_removal", skus_count)
     return total
 
@@ -73,9 +74,3 @@ def checkout(skus: str) -> int:
     return total
 
 print(checkout("AA"))
-
-
-
-
-
-
