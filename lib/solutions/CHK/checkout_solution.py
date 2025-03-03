@@ -20,13 +20,15 @@ def checkout(skus: str) -> int:
                 D_counter += 1
         if A_counter == 3:
             values["A"] = 130
-            A_counter = 1
+            new_A_counter = A_counter % 3
         if B_counter == 2:
             values["B"] = 45
-            B_counter = 1
+            new_B_counter = B_counter % 2
         return (A_counter * values["A"] + B_counter * values["B"] + C_counter * values["C"] + D_counter * values["D"])
     else:
         return -1
+
+print(checkout("AAAA"))
 
 
 
