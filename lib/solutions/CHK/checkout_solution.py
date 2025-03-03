@@ -3,21 +3,16 @@ from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-discounts = {"A": [(5, 200), (3, 130)],
-                 "B": [(2, 45)],
-                 "H": [(5, 45), (10, 80)],
-                 "K": [(2, 150)],
-                 "P": [(5, 200)],
-                 "Q": [(3, 80)],
-                 "V": [(2, 90), (3, 130)]}
-offers = {  "E": [(2, "B")],
-            "F": [(2, "F")],
-            "N": [(3, "M")],
-            "R": [(3, "Q")],
-            "U": [(3, "U")],
-            }
-
-def apply_offers(offers, skus_count):
+def apply_offers(skus_count: dict) -> dict:
+    """
+    Removes Skus from skus count when an offer is applicable by applying the offers
+    """
+    offers = {"E": [(2, "B")],
+              "F": [(2, "F")],
+              "N": [(3, "M")],
+              "R": [(3, "Q")],
+              "U": [(3, "U")],
+              }
     for item, rules in offers.items():
         for rule in rules:
             if isinstance(rule[1], str):
@@ -27,19 +22,22 @@ def apply_offers(offers, skus_count):
                 skus_count[free_item] =  max(0, skus_count.get(free_item, 0) - num_free_items)
     return skus_count
 
-def apply_discounts(discounts: dict, skus_count: dict) -> int:# this function should be called at the beginning OR use OOP.
+def apply_discounts(skus_count: dict) -> int:
+    """
+    Applies discount to total and removes Skus used for that discount.
+    """
+    discounts = {"A": [(5, 200), (3, 130)],
+                 "B": [(2, 45)],
+                 "H": [(5, 45), (10, 80)],
+                 "K": [(2, 150)],
+                 "P": [(5, 200)],
+                 "Q": [(3, 80)],
+                 "V": [(2, 90), (3, 130)]}
     total = 0
     for item, rules in discounts.items():
         for rule in rules:
-            print("rule", rule)
-            print("item:", item)
-            print("skus", skus_count[item])
-            print("rule[1]:", rule[1])
             total += (skus_count[item] // rule[0]) * rule[1]
             skus_count[item] =  max(0, skus_count[item] - (skus_count[item] // rule[0]) * rule[0])
-            # now add to the total
-    print("\n\n final total", total)
-    print("skus_count_after_removal", skus_count)
     return total
 
 
@@ -50,11 +48,12 @@ def checkout(skus: str) -> int:
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F"}):
         return -1
     skus_count = Counter(skus)
-    apply_offers(offers, skus_count)
-    total = apply_discounts(discounts, skus_count)
+    apply_offers(skus_count)
+    total = apply_discounts(skus_count)
+    print("\n\n TOTAL 1:", total)
     for i in skus:
         total += values[i] * skus_count[i]
-
+    print("\n\n TOTAL 2:", total)
     return total
 
 print(checkout("AAAA"))
