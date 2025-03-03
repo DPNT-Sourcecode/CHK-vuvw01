@@ -22,11 +22,10 @@ def checkout(skus: str) -> int:
                 D_counter += 1
             if i == 'E':
                 E_counter += 1
-        print("B_counter", B_counter)
+        print("B_counter", B_counter) # 4
         # discount
-        free_B = E_counter // 2
-        if B_counter > 0:
-            B_counter = max(0, B_counter - free_B)
+        free_B = E_counter // 2 # 1
+
         print("free_B", free_B)
         print("E_counter", E_counter)
         # As
@@ -37,10 +36,6 @@ def checkout(skus: str) -> int:
         total+= A_counter * values["A"]
         # Cs Ds Es
         total += C_counter * values["C"] + D_counter * values["D"] + E_counter * values["E"]
-        # Bs
-        total += (B_counter // 2) * 45
-        B_counter %= 2
-        total += B_counter * values["B"]
 
 
         return total
@@ -63,5 +58,6 @@ def test_checkout():
 
 if __name__ == '__main__':
     test_checkout()
+
 
 
