@@ -3,23 +3,7 @@ from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-# def apply offers
-# for key value discount items:
-#   for each rule in value:
-        # if rule[1] is instance of string:
-            # amount_of_free_items = rule[0]
-            # free_item = rule[1]
-            # num_free_items = skus_count[key] // rule[0]
-            # skus_count[free_item] =  max(0 skus_count.get(free_item, 0) - num_free_items)
-
-def apply_discounts(discounts, skus_count):
-    for item, rules in discounts.items():
-        for rule in rules:
-            if rule[1]
-
-def checkout(skus: str) -> int:
-    values = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10, "G": 20, "H": 10, "I": 35, "J": 60, "K": 80, "L": 90, "M": 15, "N": 40, "O": 10, "P": 50, "Q": 30, "R": 50, "S": 30, "T": 20, "U": 40, "V": 50, "W": 20, "X": 90, "Y": 10, "Z": 50}
-    discounts = {"A": [(5, 200), (3, 130)],
+discounts = {"A": [(5, 200), (3, 130)],
                  "B": [(2, 45)],
                  "E": [(2, "B")],
                  "F": [(2, "F")],
@@ -31,6 +15,27 @@ def checkout(skus: str) -> int:
                  "R": [(3, "Q")],
                  "U": [(3, "U")],
                  "V": [(2, 90), (3, 130)]}
+
+def apply_discounts(discounts, skus_count):
+    for item, rules in discounts.items():
+        for rule in rules:
+            if isinstance(rule[1], str):
+                amount_of_free_items = rule[0]
+                free_item = rule[1]
+                num_free_items = skus_count[item] // amount_of_free_items
+                skus_count[free_item] =  max(0, skus_count.get(free_item, 0) - num_free_items)
+    return skus_count
+
+def apply_offers(offers, skus_count):
+    for item, rules in discounts.items():
+        for rule in rules:
+           pass
+
+
+
+
+def checkout(skus: str) -> int:
+    values = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10, "G": 20, "H": 10, "I": 35, "J": 60, "K": 80, "L": 90, "M": 15, "N": 40, "O": 10, "P": 50, "Q": 30, "R": 50, "S": 30, "T": 20, "U": 40, "V": 50, "W": 20, "X": 90, "Y": 10, "Z": 50}
     A_counter =  B_counter = C_counter = D_counter = E_counter = F_counter = total = 0
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F"}):
         return -1
@@ -55,3 +60,4 @@ def checkout(skus: str) -> int:
     return total
 
 print(checkout("AAABBCCDD"))
+
