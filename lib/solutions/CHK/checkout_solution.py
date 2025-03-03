@@ -23,7 +23,8 @@ def checkout(skus: str) -> int:
             if i == 'E':
                 E_counter += 1
         if (A_counter // 5) >= 1:
-            total += (A_counter // 5) * 200 + A_counter % 3 * values["A"]
+            print("TRUE", A_counter // 5)
+            total += (A_counter // 5) * 200 + A_counter % 5 * values["A"]
         else:
             total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
 
@@ -41,7 +42,7 @@ def checkout(skus: str) -> int:
 
 def test_checkout():
     print(checkout("AAAAABBBBCCCCDDDDEE"))
-    assert checkout('AAAAABBBBCCCCDDDDEE') == 480
+    assert checkout('AAAAA BB BB CCCC DDDD EE') ==
     print(checkout("ABCD"))
 
     assert checkout('ABCD') ==  155
