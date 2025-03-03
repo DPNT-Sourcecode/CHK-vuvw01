@@ -8,6 +8,7 @@ def checkout(skus: str) -> int:
     B_counter = 0
     C_counter = 0
     D_counter = 0
+    total = 0
     if set(skus).issubset({"A", "B", "C", "D"}):
         for i in skus:
             if i == 'A':
@@ -19,14 +20,14 @@ def checkout(skus: str) -> int:
             if i == 'D':
                 D_counter += 1
         if A_counter > 3:
-            A_result = (A_counter // 3) * 130 + A_counter % 3 * values["A"]
-            print()
+            total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
         if B_counter > 3:
-            B_result = (B_counter // 3) * 130 + B_counter % 3 * values["B"]
+            total+= (B_counter // 3) * 130 + B_counter % 3 * values["B"]
 
-        return C_counter * values["C"] + D_counter * values["D"] + A_result + B_result
-
+        total += C_counter * values["C"] + D_counter * values["D"]
+        return total
     else:
         return -1
 
 print(checkout("AAAAAAAAAA"), )
+
