@@ -3,7 +3,7 @@ import unittest
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus: str) -> int:
-    values = {"A": 50, "B": 30, "C": 20, "D": 15}
+    values = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
     A_counter = 0
     B_counter = 0
     C_counter = 0
@@ -26,15 +26,14 @@ def checkout(skus: str) -> int:
             print("TRUE", A_counter // 5)
             total += (A_counter // 5) * 200 + (A_counter % 5 * values["A"])
         else:
-            print("ELSE")
             total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
 
 
         total+= (B_counter // 2) * 45 + B_counter % 2 * values["B"]
 
         total += C_counter * values["C"] + D_counter * values["D"]
-
-        if E_counter >= 2:
+        total += E_counter * values["E"]
+        if (E_counter // 2)>=1:
             total -= (E_counter // 2) * values["B"]
         return total
     else:
@@ -52,4 +51,5 @@ def test_checkout():
     assert checkout('EEB') == 80
 if __name__ == '__main__':
     test_checkout()
+
 
