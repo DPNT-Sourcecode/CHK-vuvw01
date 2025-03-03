@@ -33,8 +33,12 @@ def checkout(skus: str) -> int:
 
         total += C_counter * values["C"] + D_counter * values["D"]
         total += E_counter * values["E"]
-        if (E_counter // 2)>=1:
-            total -= (E_counter // 2) * values["B"]
+        print("E_counter",  E_counter)
+        if (E_counter // 2)>=1 and B_counter > 1:
+            discount_times = (E_counter // 2) * B_counter
+            print("discount_times", discount_times)
+            total -= discount_times * values["B"]
+
         return total
     else:
         return -1
@@ -51,5 +55,6 @@ def test_checkout():
     assert checkout('EEB') == 80
 if __name__ == '__main__':
     test_checkout()
+
 
 
