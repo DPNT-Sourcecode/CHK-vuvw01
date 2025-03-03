@@ -22,20 +22,18 @@ def checkout(skus: str) -> int:
                 D_counter += 1
             if i == 'E':
                 E_counter += 1
-
+        # As
         total += (A_counter // 5) * 200
         A_counter %= 5
         total += (A_counter // 3) * 130
         A_counter %= 3
         total+= A_counter * values["A"]
-        free_B = E_counter // 2
-        if free_B <= B_counter:
-            B_counter -= free_B
-        else:
-            B_counter = 0
+        # Bs
         total+= (B_counter // 2) * 45 + B_counter % 2 * values["B"]
-        total += C_counter * values["C"] + D_counter * values["D"]
-        total += E_counter * values["E"]
+        # Cs Ds Es
+        total += C_counter * values["C"] + D_counter * values["D"] + E_counter * values["E"]
+        # E discount
+
 
         return total
     else:
