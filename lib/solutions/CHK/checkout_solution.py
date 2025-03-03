@@ -8,7 +8,7 @@ def checkout(skus: str) -> int:
     B_counter = 0
     C_counter = 0
     D_counter = 0
-    try:
+    try: # better to check if skus are made only of A, B, C or D string characters
         for i in skus:
             if i == 'A':
                 A_counter += 1
@@ -25,4 +25,5 @@ def checkout(skus: str) -> int:
         total = A_counter * values["A"] + B_counter * values["B"] + C_counter * values["C"] + D_counter * values["D"]
     except:
         return -1
+
 
