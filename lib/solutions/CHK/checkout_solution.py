@@ -8,7 +8,7 @@ def checkout(skus: str) -> int:
     B_counter = 0
     C_counter = 0
     D_counter = 0
-    if set(skus).issubset("ABCD"):
+    if set(skus).issubset("ABCD"): #?
         for i in skus:
             if i == 'A':
                 A_counter += 1
@@ -20,21 +20,23 @@ def checkout(skus: str) -> int:
                 D_counter += 1
         if A_counter == 3:
             values["A"] = 130
+            A_counter = 1
         if B_counter == 2:
             values["B"] = 45
+            B_counter = 1
         return (A_counter * values["A"] + B_counter * values["B"] + C_counter * values["C"] + D_counter * values["D"])
     else:
         return -1
 
 
-print(checkout("AAABCD"))
+print(checkout("AABCCDD"))
 
 def test_checkout():
     assert checkout("ABCD") == 115
     assert checkout("AABCD") == 165
     assert checkout("AAABCD") == 195
-    assert checkout("AABBCD") == 130
-    assert checkout("AABCCDD") == 215
+    assert checkout("AABBCD") == 180
+    assert checkout("AABCCDD") == 200
 
 if __name__ == "__main__":
     test_checkout()
