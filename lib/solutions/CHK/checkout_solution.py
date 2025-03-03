@@ -26,6 +26,8 @@ def checkout(skus: str) -> int:
             print("TRUE", A_counter // 5)
             total += (A_counter // 5) * 200 + (A_counter % 5 * values["A"])
             # remove 5 from counter
+            A_counter %= 5
+            print(A_counter) # should be 3
         total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
 
 
