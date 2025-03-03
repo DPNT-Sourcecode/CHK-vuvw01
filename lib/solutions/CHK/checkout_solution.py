@@ -50,13 +50,7 @@ def checkout(skus: str) -> int:
     skus_count = Counter(skus)
     apply_offers(skus_count)
     total = apply_discounts(skus_count)
-    print("\n\n TOTAL 1:", total)
-    print("\n\n skus_count:", skus_count)
     for item, remaining_skus_number in skus_count.items():
         total+= values[item]*remaining_skus_number
-
-    print("\n\n TOTAL 2:", total)
     return total
-
-print(checkout("AAAABB"))
 
