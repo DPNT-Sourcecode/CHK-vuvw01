@@ -29,3 +29,10 @@ def checkout(skus: str) -> int:
     else:
         return -1
 
+def test_checkout():
+    assert checkout('AAAAABBBBCCCCDDDDEE') == 480
+    assert checkout('ABCD') ==  155
+    assert checkout('EEB') == 80
+if __name__ == '__main__':
+    test_checkout()
+
