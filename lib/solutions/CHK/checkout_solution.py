@@ -2,6 +2,21 @@ from collections import Counter
 #
 # noinspection PyUnusedLocal
 # skus = unicode string
+
+# def apply offers
+# for key value discount items:
+#   for each rule in value:
+        # if rule[1] is instance of string:
+            # amount_of_free_items = rule[0]
+            # free_item = rule[1]
+            # num_free_items = skus_count[key] // rule[0]
+            # skus_count[free_item] =  max(0 skus_count.get(free_item, 0) - num_free_items)
+
+def apply_discounts(discounts, skus_count):
+    for item, rules in discounts.items():
+        for rule in rules:
+            if rule[1]
+
 def checkout(skus: str) -> int:
     values = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10, "G": 20, "H": 10, "I": 35, "J": 60, "K": 80, "L": 90, "M": 15, "N": 40, "O": 10, "P": 50, "Q": 30, "R": 50, "S": 30, "T": 20, "U": 40, "V": 50, "W": 20, "X": 90, "Y": 10, "Z": 50}
     discounts = {"A": [(5, 200), (3, 130)],
@@ -21,19 +36,7 @@ def checkout(skus: str) -> int:
         return -1
     skus_count = Counter(skus)
     print(skus_count)
-    for i in skus:
-        if i == 'A':
-            A_counter += 1
-        if i == 'B':
-            B_counter += 1
-        if i == 'C':
-            C_counter += 1
-        if i == 'D':
-            D_counter += 1
-        if i == 'E':
-            E_counter += 1
-        if i == 'F':
-            F_counter += 1
+
     amount_of_discounts = E_counter // 2
     B_counter = max(0, B_counter - amount_of_discounts)
     total += (B_counter // 2) * 45
