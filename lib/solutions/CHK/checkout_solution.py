@@ -8,7 +8,7 @@ def checkout(skus: str) -> int:
     B_counter = 0
     C_counter = 0
     D_counter = 0
-    try: # better to check if skus are made only of A, B, C or D string characters
+    if set(skus).issubset("ABCD"):
         for i in skus:
             if i == 'A':
                 A_counter += 1
@@ -23,7 +23,8 @@ def checkout(skus: str) -> int:
         if B_counter == 2:
             values["B"] = 45
         total = A_counter * values["A"] + B_counter * values["B"] + C_counter * values["C"] + D_counter * values["D"]
-    except:
+    else:
         return -1
+
 
 
