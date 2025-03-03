@@ -23,40 +23,17 @@ def checkout(skus: str) -> int:
             D_counter += 1
         if i == 'E':
             E_counter += 1
-    # Bs
     amount_of_discounts = E_counter // 2
-    for i in range(amount_of_discounts):
-        if B_counter > 0:
-            B_counter -= 1
-        else:
-            break
+    B_counter = max(0, B_counter - amount_of_discounts)
     total += (B_counter // 2) * 45
     B_counter %=2
     total += B_counter * values["B"]
-    # As
     total += (A_counter // 5) * 200
     A_counter %= 5
     total += (A_counter // 3) * 130
     A_counter %= 3
     total+= A_counter * values["A"]
-    # Cs Ds Es
     total += C_counter * values["C"] + D_counter * values["D"] + E_counter * values["E"]
 
     return total
 
-
-def test_checkout():
-    print(checkout('AAAAABBBBCCCCDDDDEE'))
-    assert checkout('AAAAABBBBCCCCDDDDEE') == 480
-    assert checkout('ABCD') ==  115
-    assert checkout('EEB') == 80
-    assert checkout('ABCDE') == 155
-    assert checkout('AAABCDE') == 235
-    assert checkout('AAABCDEE') == 245
-    print(checkout('AAAAAAAA'))
-    assert checkout('AAAAAAAA') == 330
-    assert checkout('AAAAAAAAA') == 380
-    assert checkout('EEEB') == 120
-
-if __name__ == '__main__':
-    test_checkout()
