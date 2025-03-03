@@ -18,16 +18,15 @@ def checkout(skus: str) -> int:
                 C_counter += 1
             if i == 'D':
                 D_counter += 1
-
-        sum_without_discounts = C_counter * values["C"] + D_counter * values["D"]
         if A_counter > 3:
-            left_A = A_counter % 3# should be 1
+            A_result = (A_counter // 3) * 130 + A_counter % 3 * values["A"]
+            print()
+        if B_counter > 3:
+            B_result = (B_counter // 3) * 130 + B_counter % 3 * values["B"]
 
-
+        return C_counter * values["C"] + D_counter * values["D"] + A_result + B_result
 
     else:
         return -1
 
-print(checkout("AAAAAAAAAA"))
-
-
+print(checkout("AAAAAAAAAA"), )
