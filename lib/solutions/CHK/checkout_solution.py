@@ -22,7 +22,7 @@ def checkout(skus: str) -> int:
             values["A"] = 130
         if B_counter == 2:
             values["B"] = 45
-        return A_counter * values["A"] + B_counter * values["B"] + C_counter * values["C"] + D_counter * values["D"]
+        return (A_counter * values["A"] + B_counter * values["B"] + C_counter * values["C"] + D_counter * values["D"])
     else:
         return -1
 
@@ -31,11 +31,11 @@ print(checkout("ABCD"))
 
 def test_checkout():
     assert checkout("ABC8") == -1
-    assert checkout("ABCD") == 50+30+20+15
-    assert checkout("AABCD") == 50+30+20+15
-    assert checkout("AAABCD") == 130+30+20+15
-    assert checkout("AABBCD") == 50+45+20+15
-    assert checkout("AABCCDD") == 50+50+45+20+20+15+15
+    assert checkout("ABCD") == 115
+    assert checkout("AABCD") == 115
+    assert checkout("AAABCD") == 195
+    assert checkout("AABBCD") == 130
+    assert checkout("AABCCDD") == 215
 
 if __name__ == "__main__":
     test_checkout()
