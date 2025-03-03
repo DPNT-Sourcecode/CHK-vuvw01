@@ -35,9 +35,9 @@ def apply_discounts(discounts: dict, skus_count: dict) -> int:# this function sh
             print("item:", item)
             print("skus", skus_count[item])
             print("rule[1]:", rule[1])
-            # check if there are enough item_count
-
+            total += (skus_count[item] // rule[0]) * rule[1]
             skus_count[item] =  max(0, skus_count[item] - (skus_count[item] // rule[0]) * rule[0])
+            # now add to the total
     print("\n\n final total", total)
     print("skus_count_after_removal", skus_count)
     return total
