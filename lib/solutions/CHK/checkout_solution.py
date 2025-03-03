@@ -52,4 +52,3 @@ def checkout(skus: str) -> int:
     return total
 
 print(checkout("AAABBCCDD"))
-
