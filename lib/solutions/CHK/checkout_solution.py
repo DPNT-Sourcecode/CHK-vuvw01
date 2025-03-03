@@ -34,9 +34,9 @@ def checkout(skus: str) -> int:
         total += C_counter * values["C"] + D_counter * values["D"]
         total += E_counter * values["E"]
         print("E_counter",  E_counter)
-        if (E_counter // 2)>=1 and B_counter > 1:
-            # (B_counter - E_counter// 2 [amount of times E repeats]) > 0 then
-            if (B_counter - (E_counter // 2) > 0):
+        if (E_counter // 2)>=1 and B_counter >= 1:
+            #
+            if (B_counter - (E_counter // 2) >= 0):
                 total -= values["B"] * E_counter // 2
 
         return total
@@ -49,10 +49,11 @@ def test_checkout():
     assert checkout('AAAAABBBBCCCCDDDDEE') == 480
     print(checkout("ABCD"))
 
-    assert checkout('ABCD') ==  155
+    assert checkout('ABCD') ==  115
     print(checkout("EEB"))
 
     assert checkout('EEB') == 80
+    assert checkout('ABCDE') == 155
 if __name__ == '__main__':
     test_checkout()
 
