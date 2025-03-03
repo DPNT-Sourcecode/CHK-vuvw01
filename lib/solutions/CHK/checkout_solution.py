@@ -22,20 +22,15 @@ def checkout(skus: str) -> int:
                 D_counter += 1
             if i == 'E':
                 E_counter += 1
-        if (A_counter // 5) >= 1:
-            print("TRUE", A_counter // 5)
-            total += (A_counter // 5) * 200 + (A_counter % 5 * values["A"])
-            # remove 5 from counter
-            A_counter %= 5
-            print(A_counter) # should be 3
-        total += (A_counter // 3) * 130 + A_counter % 3 * values["A"]
 
-
+        total += (A_counter // 5) * 200
+        A_counter %= 5
+        total += (A_counter // 3) * 130
+        A_counter %= 3
+        total+= A_counter * values["A"]
         total+= (B_counter // 2) * 45 + B_counter % 2 * values["B"]
-
         total += C_counter * values["C"] + D_counter * values["D"]
         total += E_counter * values["E"]
-        print("\n\n TOTAL", total)
         if (E_counter // 2)>=1 and B_counter >= 1:
             #
             if (B_counter - (E_counter // 2) >= 0):
@@ -60,3 +55,4 @@ def test_checkout():
 
 if __name__ == '__main__':
     test_checkout()
+
