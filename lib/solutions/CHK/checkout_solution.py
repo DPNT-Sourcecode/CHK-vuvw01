@@ -58,8 +58,9 @@ def checkout(skus: str) -> int:
             total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("UUUU")) # 120
-print(checkout("UUUUU"))# 160
-print(checkout("UUUUUUUU"))#240
+print(checkout("UUU")) # 120
+print(checkout("FF"))# 20
+print(checkout("FFFF"))#30
+
 
 
