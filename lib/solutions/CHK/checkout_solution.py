@@ -35,9 +35,10 @@ def apply_discounts(skus_count: dict) -> int:
                  "V": [(2, 90), (3, 130)]}
     total = 0
     for item, rules in discounts.items():
-        for rule in rules:
-            total += (skus_count[item] // rule[0]) * rule[1]
-            skus_count[item] =  max(0, skus_count[item] - (skus_count[item] // rule[0]) * rule[0])
+        if item not in skus_count:
+            for rule in rules:
+                total += (skus_count[item] // rule[0]) * rule[1] # this is correct
+                skus_count[item] -= skus_count[item] // rule[0] * rule[0]
     return total
 
 
