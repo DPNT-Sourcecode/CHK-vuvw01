@@ -24,23 +24,21 @@ def apply_offers(skus_count: dict) -> dict:
 def apply_discounts(skus_count: dict) -> int:
     """
     Applies discount to total and removes Skus used for that discount.
+    In the discounts dictionary, make sure larges discount is always first
     """
     discounts = {"A": [(5, 200), (3, 130)],
                  "B": [(2, 45)],
-                 "H": [(5, 45), (10, 80)],
+                 "H": [(10, 80), (5, 45)],
                  "K": [(2, 150)],
                  "P": [(5, 200)],
                  "Q": [(3, 80)],
-                 "V": [(2, 90), (3, 130)]}
+                 "V": [(3, 130), (2, 90)]}
     total = 0
     for item, rules in discounts.items():
         if item not in skus_count or skus_count[item] == 0:
             continue
         for rule in rules:
-            print("Rule:", rule)
-            print("Item:", item)
-            print("Skus_count[item]:", skus_count[item])
-            total += (skus_count[item] // rule[0]) * rule[1] # this is correct
+            total += (skus_count[item] // rule[0]) * rule[1]
             skus_count[item] -= (skus_count[item] // rule[0]) * rule[0]
     return total
 
@@ -54,11 +52,10 @@ def checkout(skus: str) -> int:
     skus_count = Counter(skus)
     apply_offers(skus_count)
     total = apply_discounts(skus_count)
-    print(total, skus_count)
     for item, remaining_skus_number in skus_count.items():
         if remaining_skus_number > 0:
             total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("HHHHHHHHHHH")) #expected: 90, got: 100
+print(checkout("HHHHHHHHHHH"))
 
