@@ -15,9 +15,8 @@ def apply_offers(skus_count: dict) -> dict:
               }
     for item, rules in offers.items():
         for rule in rules:
-            if isinstance(rule[1], str):
-                amount_of_free_items = rule[0]
-                free_item = rule[1]
+            if item in skus_count:
+                amount_of_free_items, free_item = rule
                 num_free_items = skus_count[item] // amount_of_free_items
                 skus_count[free_item] =  max(0, skus_count.get(free_item, 0) - num_free_items)
     return skus_count
@@ -39,8 +38,9 @@ def apply_discounts(skus_count: dict) -> int:
         if item not in skus_count or skus_count[item] == 0:
             continue
         for rule in rules:
-            total += (skus_count[item] // rule[0]) * rule[1]
-            skus_count[item] -= (skus_count[item] // rule[0]) * rule[0]
+            amount_of_free_items, amount = rule
+            total += (skus_count[item] // amount_of_free_items) * amount
+            skus_count[item] -= (skus_count[item] // amount_of_free_items) * amount_of_free_items
     return total
 
 
@@ -58,6 +58,7 @@ def checkout(skus: str) -> int:
             total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("UUU")) # 120
-print(checkout("FF"))# 20
-print(checkout("FFFF"))#30
+print(checkout("UUU")) # 120, got 80
+print(checkout("FF"))# 20, got 10
+print(checkout("FFFF"))#30, got 20
+
