@@ -61,6 +61,3 @@ def checkout(skus: str) -> int:
 print(checkout("UUU")) # 120
 print(checkout("FF"))# 20
 print(checkout("FFFF"))#30
-
-
-
