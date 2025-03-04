@@ -58,9 +58,7 @@ def checkout(skus: str) -> int:
             total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("UUU")) # 120, only discount when theres an extra
-print(checkout("FF"))# 20, got 10
-print(checkout("FFFF"))#30, got 20
+
 
 
 
