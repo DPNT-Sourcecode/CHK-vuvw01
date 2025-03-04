@@ -37,7 +37,7 @@ def apply_discounts(skus_count: dict) -> int:
         if item not in skus_count:
             for rule in rules:
                 total += (skus_count[item] // rule[0]) * rule[1] # this is correct
-                skus_count[item] -= skus_count[item] // rule[0] * rule[0]
+                skus_count[item] -= (skus_count[item] // rule[0]) * rule[0]
     return total
 
 
@@ -54,4 +54,4 @@ def checkout(skus: str) -> int:
         total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("HHHHHHHHHH"))
+print(checkout("HHHHHHHHHH")) #expected: 80, got: 90
