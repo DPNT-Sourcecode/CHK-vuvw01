@@ -6,11 +6,12 @@ from collections import Counter
 def apply_offers(skus_count: dict) -> dict:
     """
     Removes Skus from skus count when an offer is applicable by applying the offers
+    When the offer removes the same letter, add 1 more to the offers dictionary.
     """
-    offers = {"E": [(3, "B")],
+    offers = {"E": [(2, "B")],
               "F": [(3, "F")],
-              "N": [(4, "M")],
-              "R": [(4, "Q")],
+              "N": [(3, "M")],
+              "R": [(3, "Q")],
               "U": [(4, "U")],
               }
     for item, rules in offers.items():
@@ -57,6 +58,7 @@ def checkout(skus: str) -> int:
         if remaining_skus_number > 0:
             total+= values[item]*remaining_skus_number
     return total
+
 
 
 
