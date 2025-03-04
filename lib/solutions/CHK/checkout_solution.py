@@ -58,7 +58,8 @@ def checkout(skus: str) -> int:
             total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("UUU")) # 120, got 80
+print(checkout("UUU")) # 120, got 80 IT SHOULD BE 80?? MY LOGIC IS CORRECT? or is it only adds so its irrelevant
 print(checkout("FF"))# 20, got 10
 print(checkout("FFFF"))#30, got 20
+
 
