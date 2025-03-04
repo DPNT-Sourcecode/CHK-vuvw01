@@ -34,10 +34,11 @@ def apply_discounts(skus_count: dict) -> int:
                  "V": [(2, 90), (3, 130)]}
     total = 0
     for item, rules in discounts.items():
-        if item not in skus_count:
-            for rule in rules:
-                total += (skus_count[item] // rule[0]) * rule[1] # this is correct
-                skus_count[item] -= (skus_count[item] // rule[0]) * rule[0]
+        if item not in skus_count or skus_count[item] == 0:
+            continue
+        for rule in rules:
+            total += (skus_count[item] // rule[0]) * rule[1] # this is correct
+            skus_count[item] -= (skus_count[item] // rule[0]) * rule[0]
     return total
 
 
@@ -51,7 +52,8 @@ def checkout(skus: str) -> int:
     apply_offers(skus_count)
     total = apply_discounts(skus_count)
     for item, remaining_skus_number in skus_count.items():
-        total+= values[item]*remaining_skus_number
+        if remaining_skus_number > 0:
+            total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("HHHHHHHHHH")) #expected: 80, got: 90
+print(checkout("HHHHHHHHHHH")) #expected: 90, got: 100
