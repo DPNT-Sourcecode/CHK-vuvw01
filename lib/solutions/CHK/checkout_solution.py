@@ -7,11 +7,11 @@ def apply_offers(skus_count: dict) -> dict:
     """
     Removes Skus from skus count when an offer is applicable by applying the offers
     """
-    offers = {"E": [(2, "B")],
-              "F": [(2, "F")],
-              "N": [(3, "M")],
-              "R": [(3, "Q")],
-              "U": [(3, "U")],
+    offers = {"E": [(3, "B")],
+              "F": [(3, "F")],
+              "N": [(4, "M")],
+              "R": [(4, "Q")],
+              "U": [(4, "U")],
               }
     for item, rules in offers.items():
         for rule in rules:
@@ -58,8 +58,9 @@ def checkout(skus: str) -> int:
             total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("UUU")) # 120, got 80 IT SHOULD BE 80?? MY LOGIC IS CORRECT? or is it only adds so its irrelevant
+print(checkout("UUU")) # 120, only discount when theres an extra
 print(checkout("FF"))# 20, got 10
 print(checkout("FFFF"))#30, got 20
+
 
 
