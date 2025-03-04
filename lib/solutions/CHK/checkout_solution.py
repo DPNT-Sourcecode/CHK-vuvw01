@@ -54,4 +54,4 @@ def checkout(skus: str) -> int:
         total+= values[item]*remaining_skus_number
     return total
 
-
+print(checkout("UUU"))
