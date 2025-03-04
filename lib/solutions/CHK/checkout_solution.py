@@ -11,7 +11,6 @@ def apply_offers(skus_count: dict) -> dict:
               "F": [(2, "F")],
               "N": [(3, "M")],
               "R": [(3, "Q")],
-              "U": [(3, "U")],
               }
     for item, rules in offers.items():
         for rule in rules:
@@ -55,4 +54,4 @@ def checkout(skus: str) -> int:
         total+= values[item]*remaining_skus_number
     return total
 
-print(checkout("UUU"))
+print(checkout("HHHHHHHHHH"))
