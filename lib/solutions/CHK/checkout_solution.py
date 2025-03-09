@@ -49,7 +49,7 @@ def apply_discounts(skus_count: dict) -> int:
     return total
 
 def remove_items_STXYZ(skus_count: dict, skus_to_remove: int) -> dict:
-    sorted_skus = sorted(VALUES, key=VALUES.get)
+    sorted_skus = sorted(VALUES, key=VALUES.get, reverse=True)
     print("sorted_skus", sorted_skus)
     for key in sorted_skus:
         if skus_to_remove <=0:
@@ -95,6 +95,7 @@ def checkout(skus: str) -> int:
 assert checkout("STX") == 45
 assert checkout("STXSTX") == 90
 assert checkout("SSSZ") == 65
+
 
 
 
