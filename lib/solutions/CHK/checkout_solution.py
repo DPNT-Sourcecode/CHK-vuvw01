@@ -44,6 +44,17 @@ def apply_discounts(skus_count: dict) -> int:
             skus_count[item] -= (skus_count[item] // amount_of_free_items) * amount_of_free_items
     return total
 
+def remove_items_STXYZ(skus_count: dict, amount_to_remove: int) -> dict:
+    pass
+    for key in skus_count:
+        if amount_to_remove >=0:
+            break
+        remove = min(skus_count[key], amount_to_remove)
+        skus_count[key] -= remove
+        amount_to_remove -= remove
+    print("skus_count", skus_count)
+    return skus_count
+
 def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     """
     Adds 45 every 3 ["S", "T", "X", "Y", "Z"] COMBINED and subtracts them from skus_count
@@ -55,7 +66,7 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     if STXYZ_count >= 3:
         times_45_is_added = STXYZ_count // 3
         total += times_45_is_added * 45
-        skus_count[item] -= max(0, times_45_is_added * 3)  # needs to substract XYTSZ arbitrarily
+    remove_items_STXYZ(skus_count, STXYZ_count)
     return total
 
 
@@ -74,10 +85,11 @@ def checkout(skus: str) -> int:
     return total
 
 
-# assert checkout("STX") == 45
-# assert checkout("STXSTX") == 90
-# assert checkout("SSSZ") == 65
-#
+assert checkout("STX") == 45
+assert checkout("STXSTX") == 90
+assert checkout("SSSZ") == 65
+
+
 
 
 
