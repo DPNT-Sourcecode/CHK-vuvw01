@@ -50,7 +50,7 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     # loop through skus_count, check if any of (S,T,X,Y,Z) is 3 times. then apply
     # 45 and remove 3
     # every 3 of (S,T,X,Y,Z), add 45 and remove those 3 from skus_count dict
-    for item, value in skus_count:
+    for item, value in skus_count.items():
         if value >= 3 and item in ["S", "T", "X", "Y", "Z"]:
             times_45_is_added = value // 3
             total += times_45_is_added * 45
@@ -58,6 +58,7 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
             skus_count[item] = max(0, skus_count.get(item, 0) - value)
             print("total", total)
             print("skus_count", skus_count)
+    return total
 
 
 def checkout(skus: str) -> int:
@@ -68,6 +69,7 @@ def checkout(skus: str) -> int:
     skus_count = Counter(skus)
     apply_offers(skus_count)
     total = apply_discounts(skus_count)
+    total = apply_any_three_discouts(total, skus_count)
     for item, remaining_skus_number in skus_count.items():
         if remaining_skus_number > 0:
             total+= values[item]*remaining_skus_number
@@ -82,4 +84,5 @@ assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH") ==
 assert checkout("PPPPQRUVPQRUVPQRUVSU")  == 740
 
 assert checkout("SSSSS") == 85
+
 
