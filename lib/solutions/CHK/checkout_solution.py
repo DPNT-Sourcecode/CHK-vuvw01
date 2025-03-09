@@ -89,21 +89,14 @@ def checkout(skus: str) -> int:
     skus_count = Counter(skus)
     apply_offers(skus_count)
     total += apply_any_three_discouts(total, skus_count)
-    print("total 1", total)
-    print("skus_count", skus_count)
     total += apply_discounts(skus_count)
-    print("total 2", total)
     for item, remaining_skus_number in skus_count.items():
         if remaining_skus_number > 0:
             total+= VALUES[item]*remaining_skus_number
-    print("total 3", total)
 
     return total
 
 
-assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHKKVVVBBNNNMFFFQQQVVHHHHHSTX") == 1655
-
-# ABCDEFGHIJKLMNOPQRUVZABCDEFGHIJKLMNOPQRUVWW   XYZTXYTSS
 
 
 
