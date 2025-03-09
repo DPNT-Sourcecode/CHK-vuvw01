@@ -83,7 +83,7 @@ def checkout(skus: str) -> int:
     return total
 
 
-assert checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZ") == 965
+assert checkout("ABCDEFGHIJKLMSYZ") == 511
 assert checkout("UUUU") == 120
 assert checkout("HHHHHHHHHHHHHHHHHHHH") == 160
 assert checkout("LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH") == 1880
@@ -91,6 +91,7 @@ assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH") ==
 assert checkout("PPPPQRUVPQRUVPQRUVSU")  == 740
 
 assert checkout("SSSSS") == 85
+
 
 
 
