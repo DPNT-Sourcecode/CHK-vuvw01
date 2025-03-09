@@ -9,10 +9,10 @@ def apply_offers(skus_count: dict) -> dict:
     When the offer is applied same sku (e.g. 2F get one F free), add 1 more to the offers' dictionary.
     """
     offers = {"E": [(2, "B")],
-              "F": [(3, "F")],
+              "F": [(3, "F")], # offer is applied same sku, so +1
               "N": [(3, "M")],
               "R": [(3, "Q")],
-              "U": [(4, "U")],
+              "U": [(4, "U")], # offer is applied same sku, so +1
               }
     for item, rules in offers.items():
         for rule in rules:
@@ -30,7 +30,7 @@ def apply_discounts(skus_count: dict) -> int:
     discounts = {"A": [(5, 200), (3, 130)],
                  "B": [(2, 45)],
                  "H": [(10, 80), (5, 45)],
-                 "K": [(2, 150)],
+                 "K": [(2, 120)],
                  "P": [(5, 200)],
                  "Q": [(3, 80)],
                  "V": [(3, 130), (2, 90)]}
@@ -69,6 +69,7 @@ def checkout(skus: str) -> int:
         if remaining_skus_number > 0:
             total+= values[item]*remaining_skus_number
     return total
+
 
 
 
