@@ -44,13 +44,13 @@ def apply_discounts(skus_count: dict) -> int:
             skus_count[item] -= (skus_count[item] // amount_of_free_items) * amount_of_free_items
     return total
 
-def remove_items_STXYZ(skus_count: dict, amount_to_remove: int) -> dict:
+def remove_items_STXYZ(skus_count: dict, skus_to_remove: int) -> dict:
     for key in skus_count:
-        if amount_to_remove <=0:
+        if skus_to_remove <=0:
             break
-        remove = min(skus_count[key], amount_to_remove)
+        remove = min(skus_count[key], skus_to_remove)
         skus_count[key] -= remove
-        amount_to_remove -= remove
+        skus_to_remove -= remove
     print("skus_count", skus_count)
     return skus_count
 
@@ -66,7 +66,8 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     if STXYZ_count >= 3:
         times_45_is_added = STXYZ_count // 3
         total += times_45_is_added * 45
-    remove_items_STXYZ(skus_count, STXYZ_count)
+        skus_to_remove = times_45_is_added * 3
+    remove_items_STXYZ(skus_count, skus_to_remove)
     return total
 
 
@@ -82,12 +83,14 @@ def checkout(skus: str) -> int:
     for item, remaining_skus_number in skus_count.items():
         if remaining_skus_number > 0:
             total+= values[item]*remaining_skus_number
+    print("total", total)
     return total
 
 
 assert checkout("STX") == 45
 assert checkout("STXSTX") == 90
 assert checkout("SSSZ") == 65
+
 
 
 
