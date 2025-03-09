@@ -55,12 +55,13 @@ def remove_items_STXYZ(skus_count: dict, skus_to_remove: int) -> dict:
     # sort in descending order so final price is the smallest possible
     sorted_skus = sorted(VALUES, key=VALUES.get, reverse=True)
     for key in sorted_skus:
-        if skus_to_remove <=0:
-            break
-        if key in skus_count and skus_count[key] > 0:
-            remove = min(skus_count[key], skus_to_remove)
-            skus_count[key] -= remove
-            skus_to_remove -= remove
+            if skus_to_remove <=0:
+                break
+            if key in ["S", "T", "X", "Y", "Z"]:
+                if key in skus_count and skus_count[key] > 0:
+                    remove = min(skus_count[key], skus_to_remove)
+                    skus_count[key] -= remove
+                    skus_to_remove -= remove
     return skus_count
 
 def apply_any_three_discouts(total: int, skus_count: dict) -> int:
@@ -100,9 +101,10 @@ def checkout(skus: str) -> int:
     return total
 
 
-assert checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ") == 1602
+assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHKKVVVBBNNNMFFFQQQVVHHHHHSTX") == 1655
 
 # ABCDEFGHIJKLMNOPQRUVZABCDEFGHIJKLMNOPQRUVWW   XYZTXYTSS
+
 
 
 
