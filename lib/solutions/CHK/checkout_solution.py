@@ -66,6 +66,7 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     """
     Adds 45 every 3 ["S", "T", "X", "Y", "Z"] COMBINED and subtracts them from skus_count
     """
+    skus_to_remove = 0
     STXYZ_count = 0
     for item, value in skus_count.items():
         if item in ["S", "T", "X", "Y", "Z"]:
@@ -74,7 +75,8 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
         times_45_is_added = STXYZ_count // 3
         total += times_45_is_added * 45
         skus_to_remove = times_45_is_added * 3
-    remove_items_STXYZ(skus_count, skus_to_remove)
+    if skus_to_remove > 0:
+        remove_items_STXYZ(skus_count, skus_to_remove)
     return total
 
 
@@ -90,8 +92,6 @@ def checkout(skus: str) -> int:
         if remaining_skus_number > 0:
             total+= VALUES[item]*remaining_skus_number
     return total
-
-
 
 
 
