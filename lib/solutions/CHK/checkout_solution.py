@@ -44,17 +44,20 @@ def apply_discounts(skus_count: dict) -> int:
             skus_count[item] -= (skus_count[item] // amount_of_free_items) * amount_of_free_items
     return total
 
-def apply_any_three_discouts(skus_count: dict) -> int:
+def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     pass
     # every 3 of any (S,T,X,Y,Z), is 45
     # loop through skus_count, check if any of (S,T,X,Y,Z) is 3 times. then apply
     # 45 and remove 3
     # every 3 of (S,T,X,Y,Z), add 45 and remove those 3 from skus_count dict
     for item, value in skus_count:
-        if value >= 3:
+        if value >= 3 and item in ["S", "T", "X", "Y", "Z"]:
             times_45_is_added = value // 3
+            total += times_45_is_added * 45
             print("times_45_is_added", times_45_is_added)
             skus_count[item] = max(0, skus_count.get(item, 0) - value)
+            print("total", total)
+            print("skus_count", skus_count)
 
 
 def checkout(skus: str) -> int:
@@ -71,11 +74,12 @@ def checkout(skus: str) -> int:
     return total
 
 
-# assert checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZ") == 965
-# assert checkout("UUUU") == 120
-# assert checkout("HHHHHHHHHHHHHHHHHHHH") == 160
-# assert checkout("LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH") == 1880
-# assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH") == 1640
-# assert checkout("PPPPQRUVPQRUVPQRUVSU")  == 740
+assert checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZ") == 965
+assert checkout("UUUU") == 120
+assert checkout("HHHHHHHHHHHHHHHHHHHH") == 160
+assert checkout("LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH") == 1880
+assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH") == 1640
+assert checkout("PPPPQRUVPQRUVPQRUVSU")  == 740
 
-# assert checkout("SSSSS") == 85
+assert checkout("SSSSS") == 85
+
