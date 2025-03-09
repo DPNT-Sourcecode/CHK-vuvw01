@@ -45,9 +45,8 @@ def apply_discounts(skus_count: dict) -> int:
     return total
 
 def remove_items_STXYZ(skus_count: dict, amount_to_remove: int) -> dict:
-    pass
     for key in skus_count:
-        if amount_to_remove >=0:
+        if amount_to_remove <=0:
             break
         remove = min(skus_count[key], amount_to_remove)
         skus_count[key] -= remove
@@ -63,6 +62,7 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     for item, value in skus_count.items():
         if item in ["S", "T", "X", "Y", "Z"]:
             STXYZ_count += value
+    print("STXYZ_count", STXYZ_count)
     if STXYZ_count >= 3:
         times_45_is_added = STXYZ_count // 3
         total += times_45_is_added * 45
@@ -88,6 +88,7 @@ def checkout(skus: str) -> int:
 assert checkout("STX") == 45
 assert checkout("STXSTX") == 90
 assert checkout("SSSZ") == 65
+
 
 
 
