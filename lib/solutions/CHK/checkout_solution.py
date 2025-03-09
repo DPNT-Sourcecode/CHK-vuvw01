@@ -49,15 +49,17 @@ def apply_discounts(skus_count: dict) -> int:
     return total
 
 def remove_items_STXYZ(skus_count: dict, skus_to_remove: int) -> dict:
+    """
+    Removes items in the most cost-effective order
+    """
+    # sort in descending order so final price is the smallest possible
     sorted_skus = sorted(VALUES, key=VALUES.get, reverse=True)
-    print("sorted_skus", sorted_skus)
     for key in sorted_skus:
         if skus_to_remove <=0:
             break
         remove = min(skus_count[key], skus_to_remove)
         skus_count[key] -= remove
         skus_to_remove -= remove
-    print("skus_count", skus_count)
     return skus_count
 
 def apply_any_three_discouts(total: int, skus_count: dict) -> int:
@@ -68,7 +70,6 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
     for item, value in skus_count.items():
         if item in ["S", "T", "X", "Y", "Z"]:
             STXYZ_count += value
-    print("STXYZ_count", STXYZ_count)
     if STXYZ_count >= 3:
         times_45_is_added = STXYZ_count // 3
         total += times_45_is_added * 45
@@ -88,13 +89,13 @@ def checkout(skus: str) -> int:
     for item, remaining_skus_number in skus_count.items():
         if remaining_skus_number > 0:
             total+= VALUES[item]*remaining_skus_number
-    print("total", total)
     return total
 
 
 assert checkout("STX") == 45
 assert checkout("STXSTX") == 90
 assert checkout("SSSZ") == 65
+
 
 
 
