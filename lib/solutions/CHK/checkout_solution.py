@@ -55,7 +55,8 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
             times_45_is_added = value // 3
             total += times_45_is_added * 45
             print("times_45_is_added", times_45_is_added)
-            skus_count[item] -= max(0, times_45_is_added * value)
+
+            skus_count[item] -= max(0, times_45_is_added * 3)
             print("total", total)
             print("skus_count", skus_count)
     return total
@@ -68,11 +69,17 @@ def checkout(skus: str) -> int:
         return -1
     skus_count = Counter(skus)
     apply_offers(skus_count)
-    total = apply_discounts(skus_count)
-    total = apply_any_three_discouts(total, skus_count)
+    print("total 1", total)
+    total += apply_any_three_discouts(total, skus_count)
+    print("total 2", total)
+
+    total += apply_discounts(skus_count)
+    print("total 3", total)
+
     for item, remaining_skus_number in skus_count.items():
         if remaining_skus_number > 0:
             total+= values[item]*remaining_skus_number
+    print("final total", total)
     return total
 
 
@@ -84,6 +91,7 @@ assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH") ==
 assert checkout("PPPPQRUVPQRUVPQRUVSU")  == 740
 
 assert checkout("SSSSS") == 85
+
 
 
 
