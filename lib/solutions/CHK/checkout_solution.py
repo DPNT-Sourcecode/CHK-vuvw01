@@ -85,10 +85,24 @@ def checkout(skus: str) -> int:
 
 assert checkout("UUUU") == 120
 assert checkout("HHHHHHHHHHHHHHHHHHHH") == 160
-summ=90+20+20+70+50+40+15+35+20+35+20+50
-print("summ", summ)
 assert checkout("AEFPS")  == 170
+assert checkout("SSSSS") == 45+20+20
+assert checkout("TTTTTTT") == 45+45+20
+assert checkout("XXX") == 45
+assert checkout("XXXXXX") == 90
+assert checkout("YYYSSSYYY") == 90+45
+assert checkout("ZZZZZ") == 45+21+21
+assert checkout("SSSXXXYYYZZZTTT") == 225
+assert checkout("SSSSSTTYZXXX") == 211
+assert checkout("SSSSSTTYZXXXABBCHHHHHHHHHH") == 211+50+45+20+80
 
-assert checkout("SSSSS") == 85
+
+
+
+
+
+
+
+
 
 
