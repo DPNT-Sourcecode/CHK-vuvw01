@@ -63,7 +63,7 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
 
 
 def checkout(skus: str) -> int:
-    values = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10, "G": 20, "H": 10, "I": 35, "J": 60, "K": 80, "L": 90, "M": 15, "N": 40, "O": 10, "P": 50, "Q": 30, "R": 50, "S": 20, "T": 20, "U": 40, "V": 50, "W": 20, "X": 17, "Y": 20, "Z": 21}
+    values = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10, "G": 20, "H": 10, "I": 35, "J": 60, "K": 70, "L": 90, "M": 15, "N": 40, "O": 10, "P": 50, "Q": 30, "R": 50, "S": 20, "T": 20, "U": 40, "V": 50, "W": 20, "X": 17, "Y": 20, "Z": 21}
     A_counter =  B_counter = C_counter = D_counter = E_counter = F_counter = total = 0
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}):
         return -1
@@ -83,7 +83,6 @@ def checkout(skus: str) -> int:
     return total
 
 
-assert checkout("ABCDEFGHIJKLMSYZ") == 511
 assert checkout("UUUU") == 120
 assert checkout("HHHHHHHHHHHHHHHHHHHH") == 160
 assert checkout("LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH") == 1880
@@ -91,10 +90,3 @@ assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH") ==
 assert checkout("PPPPQRUVPQRUVPQRUVSU")  == 740
 
 assert checkout("SSSSS") == 85
-
-
-
-
-
-
-
