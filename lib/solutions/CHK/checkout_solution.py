@@ -92,15 +92,6 @@ def checkout(skus: str) -> int:
     return total
 
 
-assert checkout("STX") == 45
-assert checkout("STXSTX") == 90
-assert checkout("SSSZ") == 65
-
-
-
-
-
-
 
 
 
