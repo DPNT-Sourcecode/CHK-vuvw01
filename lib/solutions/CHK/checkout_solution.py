@@ -55,7 +55,7 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
             times_45_is_added = value // 3
             total += times_45_is_added * 45
             print("times_45_is_added", times_45_is_added)
-            skus_count[item] -= max(0,value - (times_45_is_added * value))
+            skus_count[item] -= max(0, times_45_is_added * value)
             print("total", total)
             print("skus_count", skus_count)
     return total
@@ -84,6 +84,7 @@ assert checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH") ==
 assert checkout("PPPPQRUVPQRUVPQRUVSU")  == 740
 
 assert checkout("SSSSS") == 85
+
 
 
 
