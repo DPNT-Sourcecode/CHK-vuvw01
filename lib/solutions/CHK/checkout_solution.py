@@ -2,6 +2,10 @@ from collections import Counter
 #
 # noinspection PyUnusedLocal
 # skus = unicode string
+VALUES = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10, "G": 20, "H": 10, "I": 35, "J": 60, "K": 70, "L": 90,
+          "M": 15, "N": 40, "O": 10, "P": 50, "Q": 30, "R": 50, "U": 40, "V": 50, "W": 20, "X": 17, "T": 20, "Y": 20,
+          "S": 20, "Z": 21}
+
 
 def apply_offers(skus_count: dict) -> dict:
     """
@@ -45,7 +49,8 @@ def apply_discounts(skus_count: dict) -> int:
     return total
 
 def remove_items_STXYZ(skus_count: dict, skus_to_remove: int) -> dict:
-    for key in skus_count:
+    sorted_skus = sorted(VALUES, key=VALUES.get)
+    for key in sorted_skus:
         if skus_to_remove <=0:
             break
         remove = min(skus_count[key], skus_to_remove)
@@ -72,7 +77,6 @@ def apply_any_three_discouts(total: int, skus_count: dict) -> int:
 
 
 def checkout(skus: str) -> int:
-    values = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10, "G": 20, "H": 10, "I": 35, "J": 60, "K": 70, "L": 90, "M": 15, "N": 40, "O": 10, "P": 50, "Q": 30, "R": 50, "U": 40, "V": 50, "W": 20, "X": 17, "T": 20, "Y": 20, "S": 20, "Z": 21}
     total = 0
     if not set(skus).issubset({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}):
         return -1
@@ -82,7 +86,7 @@ def checkout(skus: str) -> int:
     total += apply_discounts(skus_count)
     for item, remaining_skus_number in skus_count.items():
         if remaining_skus_number > 0:
-            total+= values[item]*remaining_skus_number
+            total+= VALUES[item]*remaining_skus_number
     print("total", total)
     return total
 
@@ -90,6 +94,7 @@ def checkout(skus: str) -> int:
 assert checkout("STX") == 45
 assert checkout("STXSTX") == 90
 assert checkout("SSSZ") == 65
+
 
 
 
